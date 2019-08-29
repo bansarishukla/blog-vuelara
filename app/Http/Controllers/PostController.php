@@ -17,8 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        // $posts = Post::orderBy('created_at', 'desc')->get();
-        return view('admin.adminhome', compact(['posts']));
+        return view('admin.adminhome', compact(['posts','category']));
     }
 
     /**
@@ -75,9 +74,6 @@ class PostController extends Controller
     {
        $post = Post::find($id);
        return view('admin.edit', compact('post'));
-    //    return response()->json([
-    //        'postData' => $fetchData
-    //    ]);
     }
 
     /**
@@ -112,5 +108,11 @@ class PostController extends Controller
         return response()->json([
             'status' => 'Deleted'
         ]);
+    }
+    public function getPosts(Request $request)
+    {
+        $posts = Post::all();
+        $categories = Category::all();
+        return view('admin.showPost', compact('posts', 'categories'));
     }
 }

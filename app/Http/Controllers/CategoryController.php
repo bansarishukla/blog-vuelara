@@ -99,5 +99,9 @@ class CategoryController extends Controller
             'status' => 'Deleted'
         ]);
     }
-
+    // public function getCategory(Request $request)
+    // {
+    //     $category = Category::all();
+    //     return view('admin.showPost', compact('category'));
+    // }
 }

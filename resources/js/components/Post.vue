@@ -34,10 +34,12 @@
                     <li class="list-group-item" v-for="(formData, index) in list" :key="index">
                         <h3>{{ formData.name}}</h3>
                         <h5>{{ formData.description }}</h5>
+                            {{ formData.category_id }}
+                            {{ formData.category }}
                         <hr>
-                        <div>
-                            <a :href="'/adminhome/'+formData.id+'/edit'" class="btn btn-success btn-xs">Edit</a>
-                            <button @click="deletePost(formData.id,index)" class="btn btn-danger btn-xs">Delete</button>
+                        <div style="text-align: center">
+                            <a :href="'/adminhome/'+formData.id+'/edit'" class="btn btn-success btn-xs" data-inline="true">Edit</a>
+                            <button @click="deletePost(formData.id,index)" class="btn btn-danger btn-xs" data-inline="true">Delete</button>
                         </div>
                     </li>
                 </ul>
@@ -55,16 +57,14 @@ export default {
     },
     data() {
         return {
-            selectedCategories: 0,
             list: [],
             categoryList: [],
-            isEdit: false,
-            currentID: null,
             formData: {
                 name: '',
                 description: '',
-                category_id: ''
-            }
+                category_id: '',
+                category: ''
+            },
         };
     },
     mounted() {
@@ -86,6 +86,7 @@ export default {
                     name: this.formData.name,
                     description: this.formData.description,
                     category_id: this.formData.category_id,
+                    category: this.formData.category,
                 }
                 console.log(data);
                 axios.post('/adminhome', data)
@@ -93,6 +94,7 @@ export default {
                         this.formData.name = '';
                         this.formData.description = '';
                         this.formData.category_id = '';
+                        this.formData.category = '';
                         this.list.push(res.data.formData)
                     })
                     .catch((err) => console.error(err));
@@ -108,14 +110,14 @@ export default {
 };
 </script>
 <style >
-  .card {
-    width: 100%;
-  }
-  .btn {
-      border: 1px solid #488AC7;
-  }
-  .dropdown {
-      width: 20%;
-      margin-bottom: 15px;
-  }
+    .card {
+        width: 100%;
+    }
+    .btn {
+        border: 1px solid #488AC7;
+    }
+    .dropdown {
+        width: 20%;
+        margin-bottom: 15px;
+    }
 </style>

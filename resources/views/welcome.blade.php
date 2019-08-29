@@ -20,40 +20,14 @@
                 height: 100vh;
                 margin: 0;
             }
-
-            /* .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            } */
-
             .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
             }
-
             .content {
                 margin-top: 30px;
             }
-
-            .title {
-                /* font-size: 84px; */
-            }
-            /* .links {
-                width: 100%;
-                background-color: pink;
-                height: 30px;
-
-            } */
             .links > a {
                 color: #00aef9;;
                 padding: 0 25px;
@@ -122,8 +96,10 @@
                 <div class="header-bottom">
                     <label class="category">Choose category from here</label>
                 </div>
-
             @endif
+            <div>
+                <a href="/welcome">Posts</a>
+            </div>
         </div>
     </body>
 </html>

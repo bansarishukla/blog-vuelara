@@ -11,8 +11,14 @@
                 </div>
                 <div class="form-group">
                     <label for="">Post Description</label>
-                    <textarea type="text" v-model="formData.description" class="form-control"></textarea>
+                    <textarea type="text" v-model="formData.description" class="form-control" rows="5"></textarea>
                 </div>
+                <!-- <div class="dropdown">
+                        <label>Select Category</label>
+                        <select v-model="formData.category_id" class="form-control btn btn-default">
+                            <option v-for="(category,index) in categoryList" :key="index" :value="category.id">{{ category.category }}</option>
+                        </select>
+                    </div> -->
                 <div style="text-align: center">
                     <button data-inline="true" type="submit" class="btn btn-primary" @click="updatePost">Update</button>
                 </div>
@@ -31,9 +37,13 @@
     data () {
         return {
             list:[],
+            cat: {
+                category: '',
+            },
             formData: {
                 name: '',
-                description: ''
+                description: '',
+                // category_id: ''
             }
         }
     },
@@ -42,6 +52,7 @@
         {
             this.formData.name = this.post.name;
             this.formData.description = this.post.description;
+            // this.cat.category = this.post.category;
         }
     },
     methods: {
@@ -50,6 +61,7 @@
             if (res.data) {
                this.formData.name = res.data.PostData.name
                this.formData.description = res.data.PostData.description
+            //    this.cat.category = res.data.PostData.category
             }
         },
         async updatePost (id) {
@@ -68,12 +80,4 @@
     }
  }
  </script>
- <style>
-    .go_back {
-        font-size: 30px;
-        text-align: center;
-        list-style: none;
-        text-decoration: underline;
-        margin-bottom: 30px;
-    }
- </style>
+

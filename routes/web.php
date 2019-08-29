@@ -28,10 +28,9 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::get('/adminhome/{id}/edit', 'PostController@edit');
     Route::delete('adminhome/{id}', 'PostController@destroy');
     Route::resource('/category', 'CategoryController');
-    Route::get('/post/get-data', 'PostController@getData');
 });
 
 Route::resource('/welcome', 'WelcomeController');
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/post/get-data','PostController@getPosts');
+// Route::get('/post/get-data','CategoryController@getCategory');
 
