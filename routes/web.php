@@ -13,9 +13,7 @@
 
 use App\Http\Controllers\PostController;
 
-Route::get('/', function() {
-    return view('welcome');
-});
+Route::get('/', 'PostController@getPosts');
 Auth::routes();
 
 Route::group(['middleware' => ['auth','admin']], function(){
@@ -30,7 +28,7 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::resource('/category', 'CategoryController');
 });
 
-Route::resource('/welcome', 'WelcomeController');
-Route::get('/post/get-data','PostController@getPosts');
+// Route::resource('/welcome', 'WelcomeController');
+// Route::get('/post/get-data','PostController@getPosts');
 // Route::get('/post/get-data','CategoryController@getCategory');
 

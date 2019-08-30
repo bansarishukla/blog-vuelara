@@ -67,6 +67,31 @@
                 font-size: 25px;
                 font-weight: bold;
             }
+            .main {
+                display: flex;
+                margin-top: 50px;
+            }
+            .post {
+                width: 70%;
+                margin-left: 50px;
+            }
+            .category {
+                width: 20%;
+                margin-left: 40px;
+            }
+            .category_style {
+                color: #D55;
+                margin-left: 20px;
+                margin-top: 20px;
+            }
+            .card {
+                border: 1px solid #636b6f;
+            }
+            .category_display {
+                /* background: pink; */
+                list-style: none;
+                color: black;
+            }
         </style>
     </head>
     <body>
@@ -94,11 +119,30 @@
                     <p class="title-bottom">The Func Blogger Template</p>
                 </div>
                 <div class="header-bottom">
-                    <label class="category">Choose category from here</label>
+
                 </div>
             @endif
             <div>
-                <a href="/welcome">Posts</a>
+                <div class="main">
+                    <div class="post">
+                        @foreach($posts as $post)
+                        <div class="card">
+                            <h2>{{ $post->name }}</h2><hr>
+                            <h4>{{ $post->description }}</h4>
+                            <small>Created At: {{ $post->created_at }}</small>
+                        </div>
+                        <br>
+                        @endforeach
+                    </div>
+                    <div class="category">
+                        <div class="card category_display">
+                            <h2>Categories</h2>
+                            @foreach($categories as $category)
+                                <li><a class="category_style" href="#">{{ $category->category }}</a></li>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

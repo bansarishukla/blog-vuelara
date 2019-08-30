@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Post;
 use App\User;
 use App\Category;
 use Illuminate\Http\Request;
-
 class PostController extends Controller
 {
     /**
@@ -16,10 +13,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('admin.adminhome', compact(['posts','category']));
+        $posts = Post::with('category')->get();
+        return view('admin.adminhome', compact(['posts']));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +25,6 @@ class PostController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -47,12 +42,10 @@ class PostController extends Controller
         $formData->name = $request->name;
         $formData->description = $request->description;
         $formData->save();
-
         return response()->json([
         'formData' => $formData
         ]);
     }
-
     /**
      * Display the specified resource.
      *
@@ -63,7 +56,6 @@ class PostController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -75,7 +67,6 @@ class PostController extends Controller
        $post = Post::find($id);
        return view('admin.edit', compact('post'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -89,12 +80,10 @@ class PostController extends Controller
         $postData->name = $request->name;
         $postData->description = $request->description;
         $postData->update();
-
         return response()->json([
             'formData' => $postData
         ]);
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -113,6 +102,6 @@ class PostController extends Controller
     {
         $posts = Post::all();
         $categories = Category::all();
-        return view('admin.showPost', compact('posts', 'categories'));
+        return view('welcome', compact('posts', 'categories'));
     }
 }

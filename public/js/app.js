@@ -2101,8 +2101,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       formData: {
         name: '',
         description: '',
-        category_id: '',
-        category: ''
+        category_id: '' // category: ''
+
       }
     };
   },
@@ -2162,15 +2162,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data = {
                   name: this.formData.name,
                   description: this.formData.description,
-                  category_id: this.formData.category_id,
-                  category: this.formData.category
+                  category_id: this.formData.category_id // category: this.formData.category,
+
                 };
                 console.log(data);
                 axios.post('/adminhome', data).then(function (res) {
                   _this.formData.name = '';
                   _this.formData.description = '';
-                  _this.formData.category_id = '';
-                  _this.formData.category = '';
+                  _this.formData.category_id = ''; // this.formData.category = '';
 
                   _this.list.push(res.data.formData);
                 })["catch"](function (err) {
@@ -39279,13 +39278,11 @@ var render = function() {
                 _c("h3", [_vm._v(_vm._s(formData.name))]),
                 _vm._v(" "),
                 _c("h5", [_vm._v(_vm._s(formData.description))]),
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(formData.category_id) +
-                    "\n                        " +
-                    _vm._s(formData.category) +
-                    "\n                    "
-                ),
+                _vm._v(" "),
+                _c("h6", [
+                  _vm._v("Category:" + _vm._s(formData.category.category))
+                ]),
+                _vm._v(" "),
                 _c("hr"),
                 _vm._v(" "),
                 _c("div", { staticStyle: { "text-align": "center" } }, [

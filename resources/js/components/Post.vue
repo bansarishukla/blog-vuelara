@@ -34,8 +34,8 @@
                     <li class="list-group-item" v-for="(formData, index) in list" :key="index">
                         <h3>{{ formData.name}}</h3>
                         <h5>{{ formData.description }}</h5>
-                            {{ formData.category_id }}
-                            {{ formData.category }}
+                            <!-- {{ formData.category_id }} -->
+                        <h6>Category:{{ formData.category.category }}</h6>
                         <hr>
                         <div style="text-align: center">
                             <a :href="'/adminhome/'+formData.id+'/edit'" class="btn btn-success btn-xs" data-inline="true">Edit</a>
@@ -63,7 +63,7 @@ export default {
                 name: '',
                 description: '',
                 category_id: '',
-                category: ''
+                // category: ''
             },
         };
     },
@@ -86,7 +86,7 @@ export default {
                     name: this.formData.name,
                     description: this.formData.description,
                     category_id: this.formData.category_id,
-                    category: this.formData.category,
+                    // category: this.formData.category,
                 }
                 console.log(data);
                 axios.post('/adminhome', data)
@@ -94,7 +94,7 @@ export default {
                         this.formData.name = '';
                         this.formData.description = '';
                         this.formData.category_id = '';
-                        this.formData.category = '';
+                        // this.formData.category = '';
                         this.list.push(res.data.formData)
                     })
                     .catch((err) => console.error(err));

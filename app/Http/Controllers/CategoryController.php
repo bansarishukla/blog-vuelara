@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Category;
-
 class CategoryController extends Controller
 {
     /**
@@ -16,13 +13,11 @@ class CategoryController extends Controller
     {
         // dd('hello');
         $categories = Category::all();
-
         // return view('admin.categories', compact(['categories']));
         return response()->json([
             'categories' => $categories
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -33,7 +28,6 @@ class CategoryController extends Controller
         $categories = Category::all();
         return view('admin.categories', compact('categories'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -45,12 +39,10 @@ class CategoryController extends Controller
         $formData = new Category;
         $formData->category = $request->category;
         $formData->save();
-
         return response()->json([
             'formData' => $formData
         ]);
     }
-
     /**
      * Display the specified resource.
      *
@@ -59,9 +51,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -72,7 +62,6 @@ class CategoryController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -84,7 +73,6 @@ class CategoryController extends Controller
     {
        //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -99,9 +87,4 @@ class CategoryController extends Controller
             'status' => 'Deleted'
         ]);
     }
-    // public function getCategory(Request $request)
-    // {
-    //     $category = Category::all();
-    //     return view('admin.showPost', compact('category'));
-    // }
 }
