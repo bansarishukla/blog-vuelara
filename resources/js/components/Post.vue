@@ -37,11 +37,11 @@
                                 <h3>{{ formData.name}}</h3>
                             </div>
                             <div class="card-body">
-                                <h5>{{ formData.description }}</h5>
+                                <h5>{{ formData.description }}</h5><hr>
                                 <h6 class="cat-style">Category:{{ formData.category.category }}</h6>
                             </div>
                         </div>
-                        <div style="text-align: center">
+                        <div style="text-align: center; margin-top:8px;">
                             <a :href="'/adminhome/'+formData.id+'/edit'" class="btn btn-success btn-xs" data-inline="true">Edit</a>
                             <button @click="deletePost(formData.id,index)" class="btn btn-danger btn-xs" data-inline="true">Delete</button>
                         </div>
@@ -126,5 +126,8 @@ export default {
     }
     .cat-style {
         color: black;
+    }
+    .list-group-item {
+        margin-top: 30px;
     }
 </style>

@@ -18,7 +18,7 @@
                         <select v-model="formData.category_id" class="form-control btn btn-default">
                             <option v-for="(category,index) in categoryList" :key="index" :value="category.id">{{ category.category }}</option>
                         </select>
-                    </div>
+                </div>
                 <div style="text-align: center">
                     <button data-inline="true" type="submit" class="btn btn-primary" @click="updatePost">Update</button>
                 </div>
@@ -51,6 +51,7 @@
             this.formData.name = this.post.name;
             this.formData.description = this.post.description;
             this.formData.category_id = this.post.category_id;
+            fetchCategory ();
         }
     },
     methods: {
@@ -74,7 +75,13 @@
                     this.list.push(res.data.formData)
                 })
                 .catch((err) => console.error(err));
-        }
+        },
+        async fetchCategory () {
+            let res = await axios.get('/category')
+            if (res.data) {
+                this.categoryList = res.data.categories
+            }
+        },
     }
  }
  </script>

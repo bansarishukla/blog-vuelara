@@ -66,7 +66,8 @@ class PostController extends Controller
     public function edit($id)
     {
        $post = Post::find($id);
-       return view('admin.edit', compact('post'));
+       $category = Category::find($id);
+       return view('admin.edit', compact('post', 'category'));
     }
     /**
      * Update the specified resource in storage.
@@ -80,7 +81,7 @@ class PostController extends Controller
         $postData = Post::find($id);
         $postData->name = $request->name;
         $postData->description = $request->description;
-        $postData->categoryList =$request->categoryList;
+        // $postData->categoryList =$request->categoryList;
         $postData->update();
         return response()->json([
             'formData' => $postData

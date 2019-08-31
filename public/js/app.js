@@ -1903,6 +1903,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.formData.name = this.post.name;
       this.formData.description = this.post.description;
       this.formData.category_id = this.post.category_id;
+      fetchCategory();
     }
   },
   methods: {
@@ -1981,6 +1982,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return updatePost;
+    }(),
+    fetchCategory: function () {
+      var _fetchCategory = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios.get('/category');
+
+              case 2:
+                res = _context3.sent;
+
+                if (res.data) {
+                  this.categoryList = res.data.categories;
+                }
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function fetchCategory() {
+        return _fetchCategory.apply(this, arguments);
+      }
+
+      return fetchCategory;
     }()
   }
 });
@@ -6664,7 +6698,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card {\n    width: 100%;\n}\n.btn {\n    border: 1px solid #488AC7;\n}\n.dropdown {\n    width: 20%;\n    margin-bottom: 15px;\n}\n.cat-style {\n    color: black;\n}\n", ""]);
+exports.push([module.i, "\n.card {\n    width: 100%;\n}\n.btn {\n    border: 1px solid #488AC7;\n}\n.dropdown {\n    width: 20%;\n    margin-bottom: 15px;\n}\n.cat-style {\n    color: black;\n}\n.list-group-item {\n    margin-top: 30px;\n}\n", ""]);
 
 // exports
 
@@ -39329,6 +39363,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
                     _c("h5", [_vm._v(_vm._s(formData.description))]),
+                    _c("hr"),
                     _vm._v(" "),
                     _c("h6", { staticClass: "cat-style" }, [
                       _vm._v("Category:" + _vm._s(formData.category.category))
@@ -39336,33 +39371,39 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticStyle: { "text-align": "center" } }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-success btn-xs",
-                      attrs: {
-                        href: "/adminhome/" + formData.id + "/edit",
-                        "data-inline": "true"
-                      }
-                    },
-                    [_vm._v("Edit")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger btn-xs",
-                      attrs: { "data-inline": "true" },
-                      on: {
-                        click: function($event) {
-                          return _vm.deletePost(formData.id, index)
+                _c(
+                  "div",
+                  {
+                    staticStyle: { "text-align": "center", "margin-top": "8px" }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-success btn-xs",
+                        attrs: {
+                          href: "/adminhome/" + formData.id + "/edit",
+                          "data-inline": "true"
                         }
-                      }
-                    },
-                    [_vm._v("Delete")]
-                  )
-                ])
+                      },
+                      [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger btn-xs",
+                        attrs: { "data-inline": "true" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deletePost(formData.id, index)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  ]
+                )
               ])
             })
           ],
