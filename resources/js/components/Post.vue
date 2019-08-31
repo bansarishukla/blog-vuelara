@@ -1,12 +1,12 @@
 <template>
     <div class='row'>
         <div class="card">
-        <div class="card-header">
-            <div class="card-title">
-                <h1>My Posts</h1>
+            <div class="card-header">
+                <div class="card-title">
+                    <h1>My Posts</h1>
+                </div>
             </div>
-        </div>
-        <div class="card-body">
+            <div class="card-body">
                 <form @submit.prevent="createPost">
                     <div class="form-group">
                         <label>Name</label>
@@ -67,7 +67,7 @@ export default {
                 name: '',
                 description: '',
                 category_id: '',
-                // category: ''
+                category: ''
             },
         };
     },
@@ -90,7 +90,7 @@ export default {
                     name: this.formData.name,
                     description: this.formData.description,
                     category_id: this.formData.category_id,
-                    // category: this.formData.category,
+                    category: this.formData.category,
                 }
                 console.log(data);
                 axios.post('/adminhome', data)
@@ -98,7 +98,7 @@ export default {
                         this.formData.name = '';
                         this.formData.description = '';
                         this.formData.category_id = '';
-                        // this.formData.category = '';
+                        this.formData.category = '';
                         this.list.push(res.data.formData)
                     })
                     .catch((err) => console.error(err));

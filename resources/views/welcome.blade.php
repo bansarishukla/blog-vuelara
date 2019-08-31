@@ -13,21 +13,10 @@
 
         <!-- Styles -->
         <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
             .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
-            }
-            .content {
-                margin-top: 30px;
             }
             .links > a {
                 color: #00aef9;;
@@ -70,7 +59,6 @@
             }
             .main {
                 display: flex;
-                margin-top: 50px;
             }
             .post {
                 width: 70%;
@@ -83,12 +71,13 @@
             .category_style {
                 color: #D55;
                 margin-left: 20px;
-                margin-top: 20px;
             }
             .category_display {
-                /* background: pink; */
                 list-style: none;
                 color: black;
+            }
+            .card {
+                margin-top: 30px;
             }
         </style>
     </head>
@@ -129,26 +118,22 @@
                                 <h2>{{ $post->name }}</h2>
                             </div>
                             <div class="card-body">
-                                <h4>{{ str_limit($post->description, 500) }}<a href="{{action('PostController@readMore', $post->id )}}" class="btn btn-primary">Read More</a></h4><hr>
+                                {{ str_limit($post->description, 500) }}<a href="{{action('PostController@readMore', $post->id )}}" class="btn btn-primary">Read More</a><hr>
                                 <small>Created At: {{ $post->created_at }}</small>
                             </div>
                         </div>
-                        <br>
                         @endforeach
                     </div>
                     <div class="category">
-                        <div class="card category_display">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h2>Categories</h2>
-                                </div>
-                                <div class="card-body">
-                                    @foreach($categories as $category)
-                                        <li><a class="category_style" href="{{action('PostController@filterPosts', $category->id )}}">{{ $category->category }}</a></li>
-                                    @endforeach
-                                </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 style="color: black;">Categories</h2>
                             </div>
-
+                            <div class="card-body">
+                                @foreach($categories as $category)
+                                    <li><a class="category_style" href="{{action('PostController@filterPosts', $category->id )}}">{{ $category->category }}</a></li>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>

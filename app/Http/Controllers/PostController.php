@@ -23,7 +23,14 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        // $posts = new Post;
+        // $posts->name = 'God of war';
+        // $posts->description = 'jdfd';
+        // $posts->save();
+        // $category = Category::find([3,4]);
+        // $posts->categories()->attach($category);
+
+        // return 'Success';
     }
     /**
      * Store a newly created resource in storage.
@@ -67,6 +74,7 @@ class PostController extends Controller
     {
        $post = Post::find($id);
        $category = Category::find($id);
+    // $post = Post::with('category')->get();
        return view('admin.edit', compact('post', 'category'));
     }
     /**
@@ -81,7 +89,7 @@ class PostController extends Controller
         $postData = Post::find($id);
         $postData->name = $request->name;
         $postData->description = $request->description;
-        // $postData->categoryList =$request->categoryList;
+        $postData->category_id = $request->category_id;
         $postData->update();
         return response()->json([
             'formData' => $postData
@@ -108,7 +116,8 @@ class PostController extends Controller
         return view('welcome', compact('posts', 'categories'));
     }
 
-    public function filterPosts($id) {
+    public function filterPosts($id)
+    {
         $posts = Post::with('category')->where('category_id', $id)->get();
         return view('showPostsByCategory',compact('posts'));
     }

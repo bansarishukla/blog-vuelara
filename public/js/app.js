@@ -1903,7 +1903,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.formData.name = this.post.name;
       this.formData.description = this.post.description;
       this.formData.category_id = this.post.category_id;
-      fetchCategory();
+      this.fetchCategory();
     }
   },
   methods: {
@@ -1924,7 +1924,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (res.data) {
                   this.formData.name = res.data.PostData.name;
-                  this.formData.description = res.data.PostData.description; //    this.cat.category = res.data.PostData.category
+                  this.formData.description = res.data.PostData.description;
                 }
 
               case 4:
@@ -1960,6 +1960,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.put('/adminhome/' + this.post.id, this.formData).then(function (res) {
                   _this.formData.name = '';
                   _this.formData.description = '';
+                  _this.formData.category_id = '';
 
                   _this.list.push(res.data.formData);
                 })["catch"](function (err) {
@@ -2138,8 +2139,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       formData: {
         name: '',
         description: '',
-        category_id: '' // category: ''
-
+        category_id: '',
+        category: ''
       }
     };
   },
@@ -2199,14 +2200,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data = {
                   name: this.formData.name,
                   description: this.formData.description,
-                  category_id: this.formData.category_id // category: this.formData.category,
-
+                  category_id: this.formData.category_id,
+                  category: this.formData.category
                 };
                 console.log(data);
                 axios.post('/adminhome', data).then(function (res) {
                   _this.formData.name = '';
                   _this.formData.description = '';
-                  _this.formData.category_id = ''; // this.formData.category = '';
+                  _this.formData.category_id = '';
+                  _this.formData.category = '';
 
                   _this.list.push(res.data.formData);
                 })["catch"](function (err) {

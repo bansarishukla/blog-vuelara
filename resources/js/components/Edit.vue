@@ -51,7 +51,7 @@
             this.formData.name = this.post.name;
             this.formData.description = this.post.description;
             this.formData.category_id = this.post.category_id;
-            fetchCategory ();
+            this.fetchCategory ();
         }
     },
     methods: {
@@ -60,7 +60,6 @@
             if (res.data) {
                this.formData.name = res.data.PostData.name
                this.formData.description = res.data.PostData.description
-            //    this.cat.category = res.data.PostData.category
             }
         },
         async updatePost (id) {
@@ -72,6 +71,7 @@
                 .then((res) => {
                     this.formData.name = '';
                     this.formData.description = '';
+                    this.formData.category_id = '';
                     this.list.push(res.data.formData)
                 })
                 .catch((err) => console.error(err));
