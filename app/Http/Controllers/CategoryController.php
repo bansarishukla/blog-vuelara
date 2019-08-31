@@ -36,6 +36,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'category' => 'required|max:500',
+        ]);
         $formData = new Category;
         $formData->category = $request->category;
         $formData->save();

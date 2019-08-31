@@ -41,6 +41,7 @@ class PostController extends Controller
         $formData->category_id = $request->category_id;
         $formData->name = $request->name;
         $formData->description = $request->description;
+        $formData->category;
         $formData->save();
         return response()->json([
         'formData' => $formData
@@ -79,6 +80,7 @@ class PostController extends Controller
         $postData = Post::find($id);
         $postData->name = $request->name;
         $postData->description = $request->description;
+        $postData->categoryList =$request->categoryList;
         $postData->update();
         return response()->json([
             'formData' => $postData
@@ -103,5 +105,14 @@ class PostController extends Controller
         $posts = Post::all();
         $categories = Category::all();
         return view('welcome', compact('posts', 'categories'));
+    }
+
+    public function filterPosts($id) {
+        $posts = Post::with('category')->where('category_id', $id)->get();
+        return view('showPostsByCategory',compact('posts'));
+    }
+    public function readMore($id) {
+        $posts = Post::findOrFail($id);
+        return view('displayPost', compact('posts'));
     }
 }

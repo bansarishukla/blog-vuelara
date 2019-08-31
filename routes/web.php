@@ -14,6 +14,8 @@
 use App\Http\Controllers\PostController;
 
 Route::get('/', 'PostController@getPosts');
+Route::get('/get-post/{id}', 'PostController@filterPosts');
+Route::get('/get-post/{id}/post', 'PostController@readMore');
 Auth::routes();
 
 Route::group(['middleware' => ['auth','admin']], function(){
@@ -28,7 +30,4 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::resource('/category', 'CategoryController');
 });
 
-// Route::resource('/welcome', 'WelcomeController');
-// Route::get('/post/get-data','PostController@getPosts');
-// Route::get('/post/get-data','CategoryController@getCategory');
 

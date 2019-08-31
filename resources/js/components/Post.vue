@@ -18,7 +18,7 @@
                     </div>
                     <div class="dropdown">
                         <label>Select Category</label>
-                        <select v-model="formData.category_id" class="form-control btn btn-default">
+                        <select v-model="formData.category_id" class="form-control btn btn-primary">
                             <option v-for="(category,index) in categoryList" :key="index" :value="category.id">{{ category.category }}</option>
                         </select>
                     </div>
@@ -32,11 +32,15 @@
                 <ul class="list-group">
                     <p class="no-post" v-if='list.length === 0'>There are no tasks yet!</p>
                     <li class="list-group-item" v-for="(formData, index) in list" :key="index">
-                        <h3>{{ formData.name}}</h3>
-                        <h5>{{ formData.description }}</h5>
-                            <!-- {{ formData.category_id }} -->
-                        <h6>Category:{{ formData.category.category }}</h6>
-                        <hr>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>{{ formData.name}}</h3>
+                            </div>
+                            <div class="card-body">
+                                <h5>{{ formData.description }}</h5>
+                                <h6 class="cat-style">Category:{{ formData.category.category }}</h6>
+                            </div>
+                        </div>
                         <div style="text-align: center">
                             <a :href="'/adminhome/'+formData.id+'/edit'" class="btn btn-success btn-xs" data-inline="true">Edit</a>
                             <button @click="deletePost(formData.id,index)" class="btn btn-danger btn-xs" data-inline="true">Delete</button>
@@ -119,5 +123,8 @@ export default {
     .dropdown {
         width: 20%;
         margin-bottom: 15px;
+    }
+    .cat-style {
+        color: black;
     }
 </style>

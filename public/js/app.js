@@ -1890,20 +1890,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       list: [],
-      cat: {
-        category: ''
-      },
+      categoryList: [],
       formData: {
         name: '',
-        description: '' // category_id: ''
-
+        description: '',
+        category_id: ''
       }
     };
   },
   mounted: function mounted() {
     if (this.post) {
       this.formData.name = this.post.name;
-      this.formData.description = this.post.description; // this.cat.category = this.post.category;
+      this.formData.description = this.post.description;
+      this.formData.category_id = this.post.category_id;
     }
   },
   methods: {
@@ -2038,6 +2037,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -6661,7 +6664,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card {\n    width: 100%;\n}\n.btn {\n    border: 1px solid #488AC7;\n}\n.dropdown {\n    width: 20%;\n    margin-bottom: 15px;\n}\n", ""]);
+exports.push([module.i, "\n.card {\n    width: 100%;\n}\n.btn {\n    border: 1px solid #488AC7;\n}\n.dropdown {\n    width: 20%;\n    margin-bottom: 15px;\n}\n.cat-style {\n    color: black;\n}\n", ""]);
 
 // exports
 
@@ -39048,6 +39051,50 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
+        _c("div", { staticClass: "dropdown" }, [
+          _c("label", [_vm._v("Select Category")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.category_id,
+                  expression: "formData.category_id"
+                }
+              ],
+              staticClass: "form-control btn btn-default",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.formData,
+                    "category_id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            _vm._l(_vm.categoryList, function(category, index) {
+              return _c(
+                "option",
+                { key: index, domProps: { value: category.id } },
+                [_vm._v(_vm._s(category.category))]
+              )
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
         _c("div", { staticStyle: { "text-align": "center" } }, [
           _c(
             "button",
@@ -39223,7 +39270,7 @@ var render = function() {
                       expression: "formData.category_id"
                     }
                   ],
-                  staticClass: "form-control btn btn-default",
+                  staticClass: "form-control btn btn-primary",
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
@@ -39275,15 +39322,19 @@ var render = function() {
             _vm._v(" "),
             _vm._l(_vm.list, function(formData, index) {
               return _c("li", { key: index, staticClass: "list-group-item" }, [
-                _c("h3", [_vm._v(_vm._s(formData.name))]),
-                _vm._v(" "),
-                _c("h5", [_vm._v(_vm._s(formData.description))]),
-                _vm._v(" "),
-                _c("h6", [
-                  _vm._v("Category:" + _vm._s(formData.category.category))
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-header" }, [
+                    _c("h3", [_vm._v(_vm._s(formData.name))])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h5", [_vm._v(_vm._s(formData.description))]),
+                    _vm._v(" "),
+                    _c("h6", { staticClass: "cat-style" }, [
+                      _vm._v("Category:" + _vm._s(formData.category.category))
+                    ])
+                  ])
                 ]),
-                _vm._v(" "),
-                _c("hr"),
                 _vm._v(" "),
                 _c("div", { staticStyle: { "text-align": "center" } }, [
                   _c(
@@ -51888,8 +51939,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\final\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\final\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\blog-vuelara\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\blog-vuelara\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

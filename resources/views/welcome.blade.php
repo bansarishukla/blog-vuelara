@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Laravel</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <!-- Fonts -->
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -84,9 +85,6 @@
                 margin-left: 20px;
                 margin-top: 20px;
             }
-            .card {
-                border: 1px solid #636b6f;
-            }
             .category_display {
                 /* background: pink; */
                 list-style: none;
@@ -127,19 +125,30 @@
                     <div class="post">
                         @foreach($posts as $post)
                         <div class="card">
-                            <h2>{{ $post->name }}</h2><hr>
-                            <h4>{{ $post->description }}</h4>
-                            <small>Created At: {{ $post->created_at }}</small>
+                            <div class="card-header">
+                                <h2>{{ $post->name }}</h2>
+                            </div>
+                            <div class="card-body">
+                                <h4>{{ str_limit($post->description, 500) }}<a href="{{action('PostController@readMore', $post->id )}}" class="btn btn-primary">Read More</a></h4><hr>
+                                <small>Created At: {{ $post->created_at }}</small>
+                            </div>
                         </div>
                         <br>
                         @endforeach
                     </div>
                     <div class="category">
                         <div class="card category_display">
-                            <h2>Categories</h2>
-                            @foreach($categories as $category)
-                                <li><a class="category_style" href="#">{{ $category->category }}</a></li>
-                            @endforeach
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Categories</h2>
+                                </div>
+                                <div class="card-body">
+                                    @foreach($categories as $category)
+                                        <li><a class="category_style" href="{{action('PostController@filterPosts', $category->id )}}">{{ $category->category }}</a></li>
+                                    @endforeach
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
