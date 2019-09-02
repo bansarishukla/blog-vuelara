@@ -87,12 +87,12 @@
                 <div class="header-top">
                     <img height="50" width="200" src="https://gooyaabitemplates.com/download/Free-Blogger-Templates.png" alt="Blogger Templates" style="max-height: 88px;">
                     <div class="top-right links">
+                            <a href="#"><i class="fa fa-paint-brush" aria-hidden="true"></i>By Styles</a>
+                            <a href="#"><i class="fa fa-briefcase" aria-hidden="true"></i>By Features</a>
+                            <a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i>By Topics</a>
                             @auth
                                 <a href="{{ url('/home') }}">Home</a>
                             @else
-                                <a href="#"><i class="fa fa-paint-brush" aria-hidden="true"></i>By Styles</a>
-                                <a href="#"><i class="fa fa-briefcase" aria-hidden="true"></i>By Features</a>
-                                <a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i>By Topics</a>
                                 <a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a>
 
                                 @if (Route::has('register'))

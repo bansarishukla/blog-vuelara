@@ -16,6 +16,7 @@ use App\Http\Controllers\PostController;
 Route::get('/', 'PostController@getPosts');
 Route::get('/get-post/{id}', 'PostController@filterPosts');
 Route::get('/get-post/{id}/post', 'PostController@readMore');
+Route::get('/home','HomeController@index')->name('home');
 Auth::routes();
 
 Route::group(['middleware' => ['auth','admin']], function(){
